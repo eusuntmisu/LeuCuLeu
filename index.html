@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LeuCuLeu - Subscription Manager</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>LeuCuLeu</h1>
+    <p>Gestionează-ți cheltuielile recurente și calculează-ți economiile.</p>
+    <p class="app-count">3 plăți, dintre care 2 active</p>
+  </header>
+
+  <main class="container">
+    <!-- Secțiunea pentru adăugarea unei plăți noi -->
+    <section class="panel">
+      <h2>Adaugă abonament</h2>
+      <form class="item-form">
+        <label>Nume serviciu 
+          <input type="text" name="nume" placeholder="Ex: Netflix, Chirie..." required />
+        </label>
+        
+        <label>Frecvență de plată
+          <select name="frecventa">
+            <option value="lunar">Lunar</option>
+            <option value="trimestrial">Trimestrial</option>
+            <option value="anual">Anual</option>
+          </select>
+        </label>
+
+        <label>Preț curent (RON)
+          <input type="number" name="pret" placeholder="Ex: 50" min="0" required />
+        </label>
+
+        <label>Categorie
+          <input type="text" name="categorie" placeholder="Ex: Divertisment" />
+        </label>
+
+        <button type="submit">Adaugă</button>
+      </form>
+    </section>
+
+    <!-- Secțiunea cu lista abonamentelor -->
+    <section class="panel">
+      <h2>Abonamentele mele</h2>
+      <!-- Mesaj pregătit pentru lista goală (util în etapele următoare) -->
+      <!-- <p class="empty">Nu există nicio plată recurentă înregistrată.</p> -->
+      
+      <ul class="item-list">
+        <!-- Card 1: Activ -->
+        <li class="item-card">
+          <div class="item-details">
+            <h3>Spotify Family <span class="price-tag">60 RON</span></h3>
+            <span class="badge badge-lunar">Lunar</span>
+            <span class="category-text">Divertisment</span>
+          </div>
+          <span class="status">Activ</span>
+        </li>
+
+        <!-- Card 2: Anulat (.done) - Generează economie -->
+        <li class="item-card done">
+          <div class="item-details">
+            <h3>Abonament Sală <span class="price-tag">180 RON</span></h3>
+            <span class="badge badge-lunar">Lunar</span>
+            <span class="category-text">Sănătate</span>
+          </div>
+          <span class="status">Anulat</span>
+        </li>
+
+        <!-- Card 3: Activ -->
+        <li class="item-card">
+          <div class="item-details">
+            <h3>Licență Cloud / GitHub Pro <span class="price-tag">450 RON</span></h3>
+            <span class="badge badge-anual">Anual</span>
+            <span class="category-text">Productivitate</span>
+          </div>
+          <span class="status">Activ</span>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    Proiect Tehnologii Web - LeuCuLeu
+  </footer>
+</body>
+</html>

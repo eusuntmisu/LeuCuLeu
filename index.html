@@ -14,69 +14,82 @@
   </header>
 
   <main class="container">
-    <!-- Secțiunea pentru adăugarea unei plăți noi -->
     <section class="panel">
-      <h2>Adaugă abonament</h2>
+      <h2>Adaugă tranzacție</h2>
       <form class="item-form">
-        <label>Nume serviciu 
-          <input type="text" name="nume" placeholder="Ex: Netflix, Chirie..." required />
-        </label>
-        
-        <label>Frecvență de plată
-          <select name="frecventa">
-            <option value="lunar">Lunar</option>
-            <option value="trimestrial">Trimestrial</option>
-            <option value="anual">Anual</option>
+        <label>Tip tranzacție
+          <select name="tip_tranzactie">
+            <option value="abonament">Abonament (Recurent)</option>
+            <option value="onetime">Cheltuială unică (One-time)</option>
           </select>
         </label>
 
-        <label>Preț curent (RON)
-          <input type="number" name="pret" placeholder="Ex: 50" min="0" required />
+        <label>Nume / Descriere 
+          <input type="text" name="nume" placeholder="Ex: Netflix, Cumpărături..." required />
+        </label>
+        
+        <label>Dată (sau Data scadenței)
+          <input type="date" name="data_plata" value="2026-09-29" required />
         </label>
 
-        <label>Categorie
-          <input type="text" name="categorie" placeholder="Ex: Divertisment" />
+        <label>Frecvență (Doar pt. abonamente)
+          <select name="frecventa">
+            <option value="lunar">Lunar</option>
+            <option value="anual">Anual</option>
+            <option value="none">- Nu se aplică -</option>
+          </select>
+        </label>
+
+        <label>Sumă (RON)
+          <input type="number" name="pret" placeholder="Ex: 50" min="0" required />
         </label>
 
         <button type="submit">Adaugă</button>
       </form>
     </section>
 
-    <!-- Secțiunea cu lista abonamentelor -->
+  
     <section class="panel">
-      <h2>Abonamentele mele</h2>
-      <!-- Mesaj pregătit pentru lista goală (util în etapele următoare) -->
-      <!-- <p class="empty">Nu există nicio plată recurentă înregistrată.</p> -->
+
+      <div class="list-header">
+        <h2>Istoric tranzacții</h2>
+        <div class="filter-group">
+          <select name="vizualizare_tip">
+            <option value="all">Toate (Ultimele 50)</option>
+            <option value="abonamente">Doar Abonamente</option>
+            <option value="onetime">Doar Cheltuieli Unice</option>
+          </select>
+          <input type="month" name="filtru_luna" value="2026-09" />
+        </div>
+      </div>
       
       <ul class="item-list">
-        <!-- Card 1: Activ -->
         <li class="item-card">
           <div class="item-details">
-            <h3>Spotify <span class="price-tag">20 RON</span></h3>
-            <span class="badge badge-lunar">Lunar</span>
-            <span class="category-text">Divertisment</span>
+            <h3>Spotify Family <span class="price-tag">60 RON</span></h3>
+            <span class="badge badge-lunar">Abonament Lunar</span>
+            <span class="category-text">12 Septembrie 2026</span>
           </div>
           <span class="status">Activ</span>
         </li>
 
-        <!-- Card 2: Anulat (.done) - Generează economie -->
         <li class="item-card done">
           <div class="item-details">
             <h3>Abonament Sală <span class="price-tag">180 RON</span></h3>
-            <span class="badge badge-lunar">Lunar</span>
-            <span class="category-text">Sănătate</span>
+            <span class="badge badge-lunar">Abonament Lunar</span>
+            <span class="category-text">05 Septembrie 2026</span>
           </div>
           <span class="status">Anulat</span>
         </li>
 
-        <!-- Card 3: Activ -->
+
         <li class="item-card">
           <div class="item-details">
-            <h3>Licență Cloud / GitHub Pro <span class="price-tag">450 RON</span></h3>
-            <span class="badge badge-anual">Anual</span>
-            <span class="category-text">Productivitate</span>
+            <h3>Cumpărături Supermarket <span class="price-tag">250 RON</span></h3>
+            <span class="badge badge-onetime">One-time</span>
+            <span class="category-text">28 Septembrie 2026</span>
           </div>
-          <span class="status">Activ</span>
+          <span class="status">Plătit</span>
         </li>
       </ul>
     </section>

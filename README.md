@@ -36,3 +36,18 @@ Open `index.html` in a modern browser. No build step, no server required for Sta
 | S1-R6 | 2 columns on desktop, 1 under 700px | [Link to style.css](#) (@media) | resize < 700px |
 | S1-R7 | visible focus, readable dark theme | [Link to style.css](#) | Tab; dark mode |
 | S1-R8 | commit "Stage 1" pushed | [Link to commit](#) | commit history |
+
+## Stage 2: data logic
+Plain JavaScript, no DOM. `plati.js` holds the array and the functions that read and change it. Results are printed in the browser console (F12). Also includes custom logic for filtering out total spending by specific months (`calculeazaTotalPeLuna`).
+
+## Status Checklist
+
+| ID | Requirement | Where (permalink) | How to check |
+| :--- | :--- | :--- | :--- |
+| S2-R1 | JS file linked, logs on page load | [Link to index.html](#) (script) | open page, F12 |
+| S2-R2 | 3+ items with id, name, state, tag | [Link to plati.js](#) | read |
+| S2-R3 | list, count, search, add, toggle, delete | [Link to plati.js](#) | console output |
+| S2-R4 | add rejects empty name and invalid tag | [Link to plati.js](#) | last console lines |
+| S2-R5 | original array unchanged after add | [Link to plati.js](#) | console line |
+| S2-R6 | README Stage 2 section + AI log | [Link to README.md](#) | read |
+| S2-R7 | commit "Stage 2" pushed | [Link to commit](#) | commit history |

@@ -32,7 +32,7 @@ function adaugaPlata(lista, nume, tip, frecventa, suma, data, activ = false) {
   const numeCurat = nume.trim();
   
   if (!numeCurat) {
-    console.error("Numele tranzacției nu poate fi gol!");
+    console.error("Numele tranzactiei nu poate fi gol!");
     return lista;
   }
   
@@ -42,7 +42,7 @@ function adaugaPlata(lista, nume, tip, frecventa, suma, data, activ = false) {
   }
 
   if (typeof suma !== "number" || suma <= 0) {
-    console.error("Suma trebuie să fie un număr strict mai mare ca 0!");
+    console.error("Suma trebuie sa fie un numar strict mai mare ca 0!");
     return lista;
   }
 

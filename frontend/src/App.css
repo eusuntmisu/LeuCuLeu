@@ -51,7 +51,7 @@ body {
   margin: 24px auto;
   padding: 0 16px;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 2fr; /* 1 parte pentru formular, 2 părți pentru listă */
   gap: 24px;
   align-items: start;
 }
@@ -223,4 +223,125 @@ button:hover {
   .item-form select {
     background: #111827;
   }
+}.list-header
+
+
+.filter-group {
+  display: flex;
+  gap: 16px; 
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+
+.filter-group select,
+.filter-group input[type="month"] {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-color: var(--card); 
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+  color-scheme: dark; 
+  transition: border-color 0.2s ease;
+}
+
+.filter-group select:hover,
+.filter-group input[type="month"]:hover,
+.filter-group select:focus,
+.filter-group input[type="month"]:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.sticky-panel {
+  position: sticky;
+  top: 24px;
+}
+
+.container.full-width {
+  grid-template-columns: 1fr;
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.form-header h2 {
+  margin: 0;
+}
+
+.icon-btn {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.2s ease;
+}
+
+.icon-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background-color: rgba(16, 185, 129, 0.05);
+}
+
+.show-form-btn {
+  margin-bottom: 20px;
+  display: inline-block;
+}
+.custom-date-picker {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.custom-date-picker input,
+.custom-date-picker select {
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+}
+
+.custom-date-picker input:focus,
+.custom-date-picker select:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.date-day {
+  width: 60px;
+  text-align: center;
+}
+
+.date-month {
+  flex: 1;
+  cursor: pointer;
+}
+
+.date-year {
+  width: 75px;
+  text-align: center;
+}
+
+.custom-date-picker input[type="number"]::-webkit-inner-spin-button,
+.custom-date-picker input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.custom-date-picker input[type="number"] {
+  -moz-appearance: textfield;
 }

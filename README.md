@@ -69,3 +69,25 @@ The app now lives in `frontend/`, built with Vite. The data from stage 2 moved i
 | S3-R5 | node_modules ignored, build passes | [Link to frontend/.gitignore](#) | npm run build |
 | S3-R6 | README Stage 3 section + AI log | [Link to README.md](#) | read |
 | S3-R7 | commit "Stage 3" pushed | [Link to commit](#) | commit history |
+
+## Stage 4: components
+The list is rendered from the data, through two components:
+PlataList receives the whole array and renders one card per item[cite: 48]
+PlataCard receives a single item through props and displays it[cite: 48]
+
+## Status
+- [x] Stage 3: Vite and React project[cite: 48]
+- [x] Stage 4: components rendered from data[cite: 48]
+Stage 5: local state and events[cite: 48]
+
+## Status Checklist (Stage 4)
+
+| ID | Requirement | Where (permalink) | How to check |
+| :--- | :--- | :--- | :--- |
+| S4-R1 | 2+ components in src/components/ | [Link to frontend/src/components/](#) | open folder[cite: 49] |
+| S4-R2 | card receives data through props | [Link to PlataCard.jsx](#) | read[cite: 49] |
+| S4-R3 | map + key={id}, no console warnings | [Link to PlataList.jsx](#) | F12, Console[cite: 49] |
+| S4-R4 | message for empty list | [Link to PlataList.jsx](#) | set array to [][cite: 49] |
+| S4-R5 | state changes the card look | [Link to PlataCard.jsx](#) | toggle a done flag[cite: 49] |
+| S4-R6 | README Stage 4 section + AI log | [Link to README.md](#) | read[cite: 49] |
+| S4-R7 | commit "Stage 4" pushed | [Link to commit](#) | commit history[cite: 49] |

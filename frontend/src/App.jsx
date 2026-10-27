@@ -23,8 +23,8 @@ export default function App() {
   return (
     <>
       <header className="app-header">
-        <h1>LeuCuLeu</h1>
-        <p>Gestionează-ți cheltuielile recurente și calculează-ți economiile.</p>
+        <img src="/leuculeu.png" alt="LeuCuLeu Logo" className="app-logo" />
+        
         <p className="app-count">
           {plati.length} tranzacții, dintre care {active} plăți active
         </p>

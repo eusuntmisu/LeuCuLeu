@@ -29,7 +29,7 @@ body {
 .app-header {
   background: var(--accent);
   color: #ffffff;
-  padding: 24px 16px;
+  padding: 20px 16px;
   text-align: center;
 }
 
@@ -42,8 +42,9 @@ body {
 }
 
 .app-count {
-  font-weight: 600;
-  margin-top: 12px !important;
+  font-weight: 500;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .container {
@@ -344,4 +345,11 @@ button:hover {
 
 .custom-date-picker input[type="number"] {
   -moz-appearance: textfield;
+}
+
+.app-logo {
+  max-height: 230px;
+  width: auto;
+  margin: 0 auto 5px auto;
+  display: block;
 }

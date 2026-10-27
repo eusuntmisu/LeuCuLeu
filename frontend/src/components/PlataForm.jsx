@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function PlataForm({ onAscunde }) {
+export default function PlataForm({ onAscunde, onAdd }) {
   const [tip, setTip] = useState("abonament");
   const [frecventa, setFrecventa] = useState("lunar");
   
@@ -18,6 +18,26 @@ export default function PlataForm({ onAscunde }) {
     }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    const form = e.target;
+    const formData = new FormData(form);
+    
+    const nouaPlata = {
+      id: Date.now(), 
+      nume: formData.get("nume"),
+      tip: tip,
+      frecventa: tip === "onetime" ? "none" : frecventa,
+      suma: parseFloat(formData.get("pret")),
+      data: `${an}-${luna}-${zi}`,
+      activ: true 
+    };
+
+    onAdd(nouaPlata);
+    form.reset(); 
+  };
+
   return (
     <section className="panel sticky-panel">
       <div className="form-header">
@@ -27,7 +47,7 @@ export default function PlataForm({ onAscunde }) {
         </button>
       </div>
 
-      <form className="item-form">
+      <form className="item-form" onSubmit={handleSubmit}>
         <label>Tip tranzacție
           <select name="tip_tranzactie" value={tip} onChange={handleTipChange}>
             <option value="abonament">Abonament (Recurent)</option>
@@ -41,21 +61,8 @@ export default function PlataForm({ onAscunde }) {
         
         <label>Data scadenței
           <div className="custom-date-picker">
-            <input 
-              type="number" 
-              className="date-day" 
-              placeholder="Zi" 
-              min="1" 
-              max="31" 
-              value={zi}
-              onChange={(e) => setZi(e.target.value)}
-              required 
-            />
-            <select 
-              className="date-month"
-              value={luna}
-              onChange={(e) => setLuna(e.target.value)}
-            >
+            <input type="number" className="date-day" placeholder="Zi" min="1" max="31" value={zi} onChange={(e) => setZi(e.target.value)} required />
+            <select className="date-month" value={luna} onChange={(e) => setLuna(e.target.value)}>
               <option value="01">Ianuarie</option>
               <option value="02">Februarie</option>
               <option value="03">Martie</option>
@@ -69,26 +76,12 @@ export default function PlataForm({ onAscunde }) {
               <option value="11">Noiembrie</option>
               <option value="12">Decembrie</option>
             </select>
-            <input 
-              type="number" 
-              className="date-year" 
-              placeholder="An" 
-              min="2005" 
-              max="2030" 
-              value={an}
-              onChange={(e) => setAn(e.target.value)}
-              required 
-            />
+            <input type="number" className="date-year" placeholder="An" min="2020" max="2030" value={an} onChange={(e) => setAn(e.target.value)} required />
           </div>
         </label>
 
         <label>Frecvență (Doar pt. abonamente)
-          <select 
-            name="frecventa" 
-            value={frecventa} 
-            onChange={(e) => setFrecventa(e.target.value)}
-            disabled={tip === "onetime"}
-          >
+          <select name="frecventa" value={frecventa} onChange={(e) => setFrecventa(e.target.value)} disabled={tip === "onetime"}>
             <option value="lunar">Lunar</option>
             <option value="trimestrial">Trimestrial</option>
             <option value="anual">Anual</option>

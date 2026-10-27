@@ -1,89 +1,95 @@
+
 import { useState } from "react";
+import './App.css';
 import PlataList from "./components/PlataList.jsx";
 import PlataForm from "./components/PlataForm.jsx";
+import SpiridusGame from "./components/SpiridusGame.jsx";
 
-const plati = [
+const PLATI_INITIALE = [
   { id: 1, nume: "Spotify Family", tip: "abonament", frecventa: "lunar", suma: 60, data: "2026-09-12", activ: true },
   { id: 2, nume: "Abonament Sală", tip: "abonament", frecventa: "lunar", suma: 180, data: "2026-09-05", activ: false },
-  { id: 3, nume: "Cumpărături Supermarket", tip: "onetime", frecventa: "none", suma: 250.50, data: "2026-09-28", activ: false },
-  { id: 6, nume: "laptop", tip: "onetime", frecventa: "none", suma: 4000, data: "2026-10-18", activ: true },
-  { id: 7, nume: "Cumpărături Supermarket", tip: "onetime", frecventa: "none", suma: 250.50, data: "2026-09-28", activ: false },
-  { id: 8, nume: "Cumpărături Supermarket", tip: "onetime", frecventa: "none", suma: 250.50, data: "2026-09-28", activ: false },
-  { id: 9, nume: "Cumpărături Supermarket", tip: "onetime", frecventa: "none", suma: 250.50, data: "2026-09-28", activ: false },
-  { id: 11, nume: "Cumpărături Supermarket", tip: "onetime", frecventa: "none", suma: 250.50, data: "2026-09-28", activ: false },
-  { id: 12, nume: "Cumpărături Supermarket", tip: "onetime", frecventa: "none", suma: 250.50, data: "2026-09-28", activ: false },
-  { id: 13, nume: "Cumpărături Supermarket", tip: "onetime", frecventa: "none", suma: 250.50, data: "2026-09-28", activ: false }
-
+  { id: 3, nume: "Cumpărături Supermarket", tip: "onetime", frecventa: "none", suma: 250.50, data: "2026-09-28", activ: false }
 ];
 
+function temaInitiala() {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
 export default function App() {
-  const active = plati.filter((p) => p.activ).length;
+  const [plati, setPlati] = useState(PLATI_INITIALE);
   const [arataFormular, setArataFormular] = useState(true);
+  
+  const [tema, setTema] = useState(temaInitiala);
+  const [clickuriLogo, setClickuriLogo] = useState(0);
+
+  function handleToggle(id) {
+    setPlati((prev) => 
+      prev.map((p) => (p.id === id ? { ...p, activ: !p.activ } : p))
+    );
+  }
+
+  function handleAddPlata(nouaPlata) {
+    setPlati((prev) => [nouaPlata, ...prev]);
+  }
+
+
+  function handleDelete(id) {
+    setPlati((prev) => prev.filter((p) => p.id !== id));
+  }
+
+  function handleTema() {
+    const noua = tema === "dark" ? "light" : "dark";
+    setTema(noua);
+    document.documentElement.dataset.theme = noua;
+  }
+
+  const active = plati.filter((p) => p.activ).length;
 
   return (
     <>
-      <header className="app-header">
-        <img src="/leuculeu.png" alt="LeuCuLeu Logo" className="app-logo" />
+      <header className="app-header" style={{ position: "relative" }}>
         
+        <button
+          className="theme-toggle"
+          onClick={handleTema}
+          aria-pressed={tema === "dark"}
+        >
+          {tema === "dark" ? "☀️ Mod luminos" : "🌙 Mod întunecat"}
+        </button>
+
+        <img 
+          src="/leuculeu.png" 
+          alt="LeuCuLeu Logo" 
+          className="app-logo" 
+          style={{ cursor: "pointer" }}
+          onClick={() => setClickuriLogo((prev) => prev + 1)}
+/>
         <p className="app-count">
           {plati.length} tranzacții, dintre care {active} plăți active
         </p>
       </header>
 
-      <main className={`container ${!arataFormular ? "full-width" : ""}`}>
+      {clickuriLogo >= 5 && <SpiridusGame onClose={() => setClickuriLogo(0)} />}
         
-        {arataFormular && <PlataForm onAscunde={() => setArataFormular(false)} />}
+      <main className={`container ${!arataFormular ? "full-width" : ""}`}>
+        {arataFormular && <PlataForm onAscunde={() => setArataFormular(false)} onAdd={handleAddPlata} />}
 
         <section className="panel">
-          
           {!arataFormular && (
-            <button 
-              className="icon-btn show-form-btn" 
-              onClick={() => setArataFormular(true)}
-              title="Arată panoul de adăugare"
-            >
-              ➔
-            </button>
+            <button className="icon-btn show-form-btn" onClick={() => setArataFormular(true)} title="Arată panoul de adăugare">➔</button>
           )}
 
           <div className="list-header">
             <h2>Istoric tranzacții</h2>
             <div className="filter-group">
-              <select name="vizualizare_tip" defaultValue="all">
-                <option value="all">Toate (Ultimele 50)</option>
-                <option value="abonamente">Doar Abonamente</option>
-                <option value="onetime">Doar Cheltuieli Unice</option>
-              </select>
-              
-              <select name="filtru_luna" defaultValue="09">
-                <option value="all">Toate lunile</option>
-                <option value="01">Ianuarie</option>
-                <option value="02">Februarie</option>
-                <option value="03">Martie</option>
-                <option value="04">Aprilie</option>
-                <option value="05">Mai</option>
-                <option value="06">Iunie</option>
-                <option value="07">Iulie</option>
-                <option value="08">August</option>
-                <option value="09">Septembrie</option>
-                <option value="10">Octombrie</option>
-                <option value="11">Noiembrie</option>
-                <option value="12">Decembrie</option>
-              </select>
-
-              <select name="filtru_an" defaultValue="2026">
-                <option value="all">Toți anii</option>
-                <option value="2025">2025</option>
-                <option value="2026">2026</option>
-                <option value="2027">2027</option>
-                <option value="2028">2028</option>
-              </select>
+              <select name="vizualizare_tip" defaultValue="all"><option value="all">Toate</option></select>
+              <select name="filtru_luna" defaultValue="09"><option value="09">Septembrie</option></select>
+              <select name="filtru_an" defaultValue="2026"><option value="2026">2026</option></select>
             </div>
           </div>
           
-          <PlataList plati={plati} />
+          <PlataList plati={plati} onToggle={handleToggle} onDelete={handleDelete} />
         </section>
-
       </main>
     </>
   );

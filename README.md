@@ -91,3 +91,32 @@ Stage 5: local state and events[cite: 48]
 | S4-R5 | state changes the card look | [Link to PlataCard.jsx](#) | toggle a done flag[cite: 49] |
 | S4-R6 | README Stage 4 section + AI log | [Link to README.md](#) | read[cite: 49] |
 | S4-R7 | commit "Stage 4" pushed | [Link to commit](#) | commit history[cite: 49] |
+
+## Stage 5: local state and events
+Interactivity added through React state (`useState`). Users can toggle subscription status (Active / Canceled), delete subscriptions, and add new ones through a validated form. Status updates immediately reflect in the financial counters.
+
+## Status Checklist (Stage 5)
+
+| ID | Requirement | Where (permalink) | How to check |
+| :--- | :--- | :--- | :--- |
+| S5-R1 | list kept in state, updates on user action | [Link to frontend/src/App.jsx](#) | toggle/delete/add items |
+| S5-R2 | form adds new item with validation (non-empty name, valid frequency/category) | [Link to frontend/src/components/PlataForm.jsx](#) | submit empty form vs valid data |
+| S5-R3 | toggle status updates card style and active/savings counter | [Link to frontend/src/App.jsx](#) | click status button on a card |
+| S5-R4 | delete removes item from state and list | [Link to frontend/src/App.jsx](#) | click delete button on a card |
+| S5-R5 | state updates are immutable (no direct mutations) | [Link to frontend/src/App.jsx](#) | inspect state handlers (`map`, `filter`, spread) |
+| S5-R6 | README Stage 5 section + AI log | [Link to README.md](#) | read |
+| S5-R7 | commit "Stage 5" pushed | [Link to commit](#) | commit history |
+
+## Stage 6: external API / backend integration
+Data is persisted through an external API/mock backend (e.g. `json-server`, Express, or Firebase). The app handles asynchronous data fetching with `useEffect`, loading spinners, error states, and persistent CRUD operations (GET, POST, PATCH/PUT, DELETE).
+
+## Status Checklist (Stage 6)
+
+| ID | Requirement | Where (permalink) | How to check |
+| :--- | :--- | :--- | :--- |
+| S6-R1 | data fetched asynchronously on mount (`useEffect`) | [Link to frontend/src/App.jsx](#) | reload page, inspect Network tab |
+| S6-R2 | loading indicator displayed while fetching | [Link to frontend/src/App.jsx](#) | slow 3G throttling in DevTools |
+| S6-R3 | user-friendly error message if API fails | [Link to frontend/src/App.jsx](#) | shut down server / block request |
+| S6-R4 | add, toggle, and delete persist changes to backend | [Link to frontend/src/App.jsx](#) | inspect POST/PATCH/DELETE requests |
+| S6-R5 | README Stage 6 section + AI log | [Link to README.md](#) | read |
+| S6-R6 | commit "Stage 6" pushed | [Link to commit](#) | commit history |

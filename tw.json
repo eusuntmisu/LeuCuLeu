@@ -1,0 +1,6 @@
+{
+  "resource": "plati",
+  "title": "nume",
+  "done": "finalizat",
+  "sample": { "tip": "abonament", "frecventa": "anual", "suma": 75 }
+}

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import PlataList from "./components/PlataList.jsx";
 import PlataForm from "./components/PlataForm.jsx";
 import SpiridusGame from "./components/SpiridusGame.jsx";
-import { fetchPlati } from "./api.js";
+import { createPlata, deletePlata, fetchPlati, updatePlata } from "./api.js";
 
 function temaInitiala() {
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
@@ -37,16 +37,30 @@ export default function App() {
     };
   }, []);
 
-  function handleToggle(id) {
-    setPlati((prev) => prev.map((p) => (p.id === id ? { ...p, activ: !p.activ } : p)));
+  // Întâi serverul, apoi state-ul: pe ecran ajunge doar ce s-a salvat.
+  // Fără try: eroarea ajunge înapoi în formular, care o afișează.
+  async function handleAddPlata(nouaPlata) {
+    const creata = await createPlata(nouaPlata); // serverul întoarce elementul cu id
+    setPlati((prev) => [...prev, creata]);
   }
 
-  function handleDelete(id) {
-    setPlati((prev) => prev.filter((p) => p.id !== id));
+  async function handleToggle(id) {
+    const plata = plati.find((p) => p.id === id);
+    try {
+      const actualizata = await updatePlata(id, { finalizat: !plata.finalizat });
+      setPlati((prev) => prev.map((p) => (p.id === id ? actualizata : p)));
+    } catch (err) {
+      setError(err.message);
+    }
   }
 
-  function handleAddPlata(nouaPlata) {
-    setPlati((prev) => [nouaPlata, ...prev]);
+  async function handleDelete(id) {
+    try {
+      await deletePlata(id);
+      setPlati((prev) => prev.filter((p) => p.id !== id));
+    } catch (err) {
+      setError(err.message);
+    }
   }
 
   function handleTema() {
@@ -55,7 +69,7 @@ export default function App() {
     document.documentElement.dataset.theme = noua;
   }
 
-  const active = plati.filter((p) => p.activ).length;
+  const active = plati.filter((p) => !p.finalizat).length;
 
   return (
     <>
@@ -96,16 +110,16 @@ export default function App() {
           </div>
           
 
-          {loading && <p className="info">Se încarcă istoricul de plăți...</p>}
-          
+          {loading && <p className="info" data-testid="loading">Se încarcă istoricul de plăți...</p>}
+
           {error && (
-            <div className="error">
-              Nu am putut încărca datele: {error}.<br/>
+            <div className="error" data-testid="error">
+              A apărut o eroare: {error}.<br/>
               Serverul local rulează? Ai dat <code>npm run api</code> în al doilea terminal?
             </div>
           )}
 
-          {!loading && !error && (
+          {!loading && (
             <PlataList plati={plati} onToggle={handleToggle} onDelete={handleDelete} />
           )}
         </section>

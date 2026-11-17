@@ -443,11 +443,27 @@ button:hover {
   margin-bottom: 20px;
 }
 
-:root[data-theme="dark"] .error,
+
+:root[data-theme="dark"] .error {
+  color: #fca5a5;
+  background: #450a0a;
+  border-color: #7f1d1d;
+}
+
+
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .error {
     color: #fca5a5;
     background: #450a0a;
     border-color: #7f1d1d;
   }
+}
+/* Etapa 7: buton dezactivat cât timp se trimite */
+.item-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.item-form input[aria-invalid="true"] {
+  border-color: #dc2626;
 }

@@ -44,13 +44,12 @@
 
 .ban-ron {
   position: absolute;
-  font-size: 1.8rem;
-  width: 40px;
-  text-align: center;
+  width: 70px;
+  height: auto;
   user-select: none;
   pointer-events: none;
-  font-weight: bold;
-  color: #86efac;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
+
 }
 
 .game-over-screen {

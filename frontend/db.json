@@ -1,9 +1,58 @@
 {
   "plati": [
-    { "id": 1, "nume": "Spotify Family", "tip": "abonament", "frecventa": "lunar", "suma": 60, "data": "2026-09-12", "activ": true },
-    { "id": 2, "nume": "Abonament Sala", "tip": "abonament", "frecventa": "lunar", "suma": 180, "data": "2026-09-05", "activ": false },
-    { "id": 3, "nume": "Cumparaturi Supermarket", "tip": "onetime", "frecventa": "none", "suma": 250.5, "data": "2026-09-28", "activ": false },
-    { "id": 4, "nume": "Asigurare Masina", "tip": "onetime", "frecventa": "none", "suma": 1200, "data": "2026-10-15", "activ": true },
-    { "id": 5, "nume": "Netflix", "tip": "abonament", "frecventa": "lunar", "suma": 50, "data": "2026-09-10", "activ": true }
+    {
+      "id": 1,
+      "nume": "Spotify Family",
+      "tip": "abonament",
+      "frecventa": "lunar",
+      "suma": 60,
+      "data": "2026-09-12",
+      "finalizat": false
+    },
+    {
+      "id": 2,
+      "nume": "Abonament Sala",
+      "tip": "abonament",
+      "frecventa": "lunar",
+      "suma": 180,
+      "data": "2026-09-05",
+      "finalizat": true
+    },
+    {
+      "id": 3,
+      "nume": "Cumparaturi Supermarket",
+      "tip": "onetime",
+      "frecventa": "none",
+      "suma": 250.5,
+      "data": "2026-09-28",
+      "finalizat": true
+    },
+    {
+      "id": 4,
+      "nume": "Asigurare Masina",
+      "tip": "onetime",
+      "frecventa": "none",
+      "suma": 1200,
+      "data": "2026-10-15",
+      "finalizat": false
+    },
+    {
+      "id": 5,
+      "nume": "Netflix",
+      "tip": "abonament",
+      "frecventa": "lunar",
+      "suma": 50,
+      "data": "2026-09-10",
+      "finalizat": false
+    },
+    {
+      "nume": "netflix",
+      "tip": "abonament",
+      "frecventa": "lunar",
+      "suma": 345,
+      "data": "2026-12-29",
+      "finalizat": false,
+      "id": 6
+    }
   ]
 }

@@ -120,3 +120,29 @@ Data is persisted through an external API/mock backend (e.g. `json-server`, Expr
 | S6-R4 | add, toggle, and delete persist changes to backend | [Link to frontend/src/App.jsx](#) | inspect POST/PATCH/DELETE requests |
 | S6-R5 | README Stage 6 section + AI log | [Link to README.md](#) | read |
 | S6-R6 | commit "Stage 6" pushed | [Link to commit](#) | commit history |
+## Stage 7: form and validation
+Transactions can be added from the page. The form is controlled (every field has `value` + `onChange`) and validated before sending: the name is required (max 100 chars), the amount must be a positive number, the year must be between 2020 and 2030 and the day must exist in the chosen month. Errors are shown inside the form, not with `alert`. Every change (add, toggle, delete) goes to the API first, and the list is updated only with what the server returned. The submit button is disabled while saving, and the form is cleared only if the save succeeded. `tw.json` and the `data-testid` attributes prepare the app for automated checking.
+
+How to run (two terminals, both in `frontend/`):
+```
+npm run api
+npm run dev
+```
+
+## Status
+- [x] Stage 6: data from a mock API
+- [x] Stage 7: form and validation
+- [ ] Stage 8: routing and detail page
+
+## Status Checklist (Stage 7)
+
+| ID | Requirement | Where (permalink) | How to check |
+| :--- | :--- | :--- | :--- |
+| S7-R1 | controlled form: value + onChange on every field | [Link to PlataForm.jsx](#) | read |
+| S7-R2 | empty name shows an error, nothing is sent | [Link to PlataForm.jsx](#) (valideaza) | submit empty, watch Network |
+| S7-R3 | added item shows in the list and survives refresh | [Link to App.jsx](#) (handleAddPlata), [Link to api.js](#) | add, refresh |
+| S7-R4 | toggle and delete survive refresh | [Link to App.jsx](#) (handleToggle, handleDelete) | toggle/delete, refresh |
+| S7-R5 | button disabled while sending, form cleared only on success | [Link to PlataForm.jsx](#) (handleSubmit) | --delay 3000; stop API and submit |
+| S7-R6 | tw.json and the data-testid attributes | [Link to tw.json](#), [Link to PlataCard.jsx](#) | querySelectorAll in the console |
+| S7-R7 | README Stage 7 section + AI log | [Link to README.md](#), [Link to ai-log/etapa-07.md](#) | read |
+| S7-R8 | commit "Stage 7" pushed | [Link to commit](#) | commit history |

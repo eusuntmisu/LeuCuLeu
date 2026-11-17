@@ -1,8 +1,9 @@
-const ETICHETE_FRECVENTA = { lunar: "Abonament Lunar", trimestrial: "Trimestrial", anual: "Anual", none: "One-time" };
+import { Link } from "react-router-dom";
+import { ETICHETE_FRECVENTA } from "../constants.js";
+import styles from "./PlataCard.module.css";
 
 export default function PlataCard({ plata, onToggle, onDelete }) {
-  const cardClass = plata.finalizat ? "item-card done" : "item-card";
-  const badgeClass = `badge badge-${plata.frecventa}`;
+  const cardClass = plata.finalizat ? `${styles.card} ${styles.done}` : styles.card;
 
   let textStatus = "Activ";
   if (plata.finalizat) {
@@ -11,24 +12,29 @@ export default function PlataCard({ plata, onToggle, onDelete }) {
 
   return (
     <li className={cardClass} data-testid="item" data-id={plata.id}>
-      <label className="task-main">
+      <div className={styles.main}>
         <input
           type="checkbox"
           checked={plata.finalizat}
           onChange={() => onToggle(plata.id)}
+          aria-label={`Marchează ${plata.nume}`}
           data-testid="item-toggle"
         />
-        <div className="item-details">
-          <h3>
-            <span data-testid="item-title">{plata.nume}</span>{" "}
-            <span className="price-tag">{plata.suma} RON</span>
-          </h3>
-          <span className={badgeClass}>{ETICHETE_FRECVENTA[plata.frecventa]}</span>
-          <span className="category-text">{plata.data}</span>
+        <div>
+          <div className={styles.titleRow}>
+            <Link to={`/plati/${plata.id}`} className={styles.title} data-testid="item-link">
+              {plata.nume}
+            </Link>
+            <span className={styles.price}>{plata.suma} RON</span>
+          </div>
+          <span className={`badge badge-${plata.frecventa}`}>
+            {ETICHETE_FRECVENTA[plata.frecventa]}
+          </span>
+          <span className={styles.date}>{plata.data}</span>
         </div>
-      </label>
+      </div>
 
-      <span className="status">{textStatus}</span>
+      <span className={styles.status}>{textStatus}</span>
 
       <button
         className="btn-danger"

@@ -132,7 +132,8 @@ npm run dev
 ## Status
 - [x] Stage 6: data from a mock API
 - [x] Stage 7: form and validation
-- [ ] Stage 8: routing and detail page
+- [x] Stage 8: routing and detail page
+- [ ] Stage 9: own backend with Express
 
 ## Status Checklist (Stage 7)
 
@@ -146,3 +147,21 @@ npm run dev
 | S7-R6 | tw.json and the data-testid attributes | [Link to tw.json](#), [Link to PlataCard.jsx](#) | querySelectorAll in the console |
 | S7-R7 | README Stage 7 section + AI log | [Link to README.md](#), [Link to ai-log/etapa-07.md](#) | read |
 | S7-R8 | commit "Stage 7" pushed | [Link to commit](#) | commit history |
+
+## Stage 8: routing and detail page
+The app has several pages behind React Router: the list (`/`), a detail page for each transaction at `/plati/:id`, an about page (`/despre`) and a 404 page for unknown addresses. The header, the navigation and the footer are written once, in `Layout`, and the pages are drawn in its `<Outlet />`. The detail page reads the id from the address with `useParams`, asks the server for that single transaction and also shows what does not fit on the card: the transaction type and, for subscriptions, the estimated yearly cost. A missing id shows an error message instead of an empty page.
+
+Component styles moved to CSS Modules (`*.module.css` next to each component and page). `index.css` keeps only the colour variables (light and dark theme) and the shared classes: `.panel`, `.btn`, `.btn-danger`, `.icon-btn`, `.error`, `.info`, `.empty` and the badges. Fixed values and their labels moved to `src/constants.js`.
+
+## Status Checklist (Stage 8)
+
+| ID | Requirement | Where (permalink) | How to check |
+| :--- | :--- | :--- | :--- |
+| S8-R1 | header navigation changes page without reload | [Link to App.jsx](#), [Link to Layout.jsx](#) | click links, watch Network |
+| S8-R2 | click on an item opens its detail page | [Link to PlataCard.jsx](#), [Link to PlataDetaliuPage.jsx](#) | click a title |
+| S8-R3 | refresh on the detail URL works; missing id shows an error | [Link to PlataDetaliuPage.jsx](#) | refresh /plati/1, open /plati/999 |
+| S8-R4 | unknown URL shows the app 404 page | [Link to App.jsx](#) (path="*"), [Link to NotFoundPage.jsx](#) | open /ceva |
+| S8-R5 | each component has its .module.css; index.css only shared styles | [Link to src/components](#), [Link to src/pages](#), [Link to index.css](#) | read |
+| S8-R6 | data-testid attributes from tables 7.3 and 8.2; detail route /plati/:id | [Link to Layout.jsx](#), [Link to PlataCard.jsx](#), [Link to PlataDetaliuPage.jsx](#), [Link to NotFoundPage.jsx](#) | querySelector in the console |
+| S8-R7 | README Stage 8 section + AI log | [Link to README.md](#), [Link to ai-log/etapa-08.md](#) | read |
+| S8-R8 | commit "Stage 8" pushed | [Link to commit](#) | commit history |

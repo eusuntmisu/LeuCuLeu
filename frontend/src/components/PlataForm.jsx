@@ -1,34 +1,20 @@
 import { useState } from "react";
+import { FRECVENTE, LUNI, TIPURI } from "../constants.js";
+import styles from "./PlataForm.module.css";
 
 const NUME_MAX = 100;
 const SUMA_MAX = 1000000;
 const AN_MIN = 2020;
 const AN_MAX = 2030;
 
-const LUNI = [
-  { value: "01", label: "Ianuarie" },
-  { value: "02", label: "Februarie" },
-  { value: "03", label: "Martie" },
-  { value: "04", label: "Aprilie" },
-  { value: "05", label: "Mai" },
-  { value: "06", label: "Iunie" },
-  { value: "07", label: "Iulie" },
-  { value: "08", label: "August" },
-  { value: "09", label: "Septembrie" },
-  { value: "10", label: "Octombrie" },
-  { value: "11", label: "Noiembrie" },
-  { value: "12", label: "Decembrie" },
-];
-
-// Formular controlat: state-ul React este sursa de adevăr pentru câmpuri
 export default function PlataForm({ onAscunde, onAdd }) {
   const [nume, setNume] = useState("");
   const [tip, setTip] = useState("abonament");
   const [frecventa, setFrecventa] = useState("lunar");
   const [suma, setSuma] = useState("");
-  const [zi, setZi] = useState("29");
-  const [luna, setLuna] = useState("09");
-  const [an, setAn] = useState("2026");
+  const [zi, setZi] = useState(() => String(new Date().getDate()));
+  const [luna, setLuna] = useState(() => String(new Date().getMonth() + 1).padStart(2, "0"));
+  const [an, setAn] = useState(() => String(new Date().getFullYear()));
 
   const [eroare, setEroare] = useState("");
   const [trimite, setTrimite] = useState(false);
@@ -70,7 +56,7 @@ export default function PlataForm({ onAscunde, onAdd }) {
   }
 
   async function handleSubmit(e) {
-    e.preventDefault(); // oprește reîncărcarea paginii
+    e.preventDefault();
     const mesaj = valideaza();
     if (mesaj) {
       setEroare(mesaj);
@@ -87,7 +73,6 @@ export default function PlataForm({ onAscunde, onAdd }) {
         data: `${an}-${luna}-${String(zi).padStart(2, "0")}`,
         finalizat: false,
       });
-      // golirea se face doar dacă salvarea a reușit
       setNume("");
       setSuma("");
       setTip("abonament");
@@ -100,19 +85,20 @@ export default function PlataForm({ onAscunde, onAdd }) {
   }
 
   return (
-    <section className="panel sticky-panel">
-      <div className="form-header">
+    <section className={`panel ${styles.sticky}`}>
+      <div className={styles.header}>
         <h2>Adaugă tranzacție</h2>
         <button type="button" className="icon-btn" onClick={onAscunde} title="Ascunde panoul">
           ⬅
         </button>
       </div>
 
-      <form className="item-form" onSubmit={handleSubmit} noValidate data-testid="form">
+      <form className={styles.form} onSubmit={handleSubmit} noValidate data-testid="form">
         <label>Tip tranzacție
           <select value={tip} onChange={handleTipChange} data-testid="form-tip">
-            <option value="abonament">Abonament (Recurent)</option>
-            <option value="onetime">Cheltuială unică (One-time)</option>
+            {TIPURI.map((t) => (
+              <option key={t.value} value={t.value}>{t.label}</option>
+            ))}
           </select>
         </label>
 
@@ -129,14 +115,14 @@ export default function PlataForm({ onAscunde, onAdd }) {
         </label>
 
         <label>Data scadenței
-          <div className="custom-date-picker">
-            <input type="number" className="date-day" placeholder="Zi" min="1" max="31" value={zi} onChange={(e) => setZi(e.target.value)} />
-            <select className="date-month" value={luna} onChange={(e) => setLuna(e.target.value)}>
+          <div className={styles.datePicker}>
+            <input type="number" className={styles.day} placeholder="Zi" min="1" max="31" value={zi} onChange={(e) => setZi(e.target.value)} aria-label="Ziua" />
+            <select className={styles.month} value={luna} onChange={(e) => setLuna(e.target.value)} aria-label="Luna">
               {LUNI.map((l) => (
                 <option key={l.value} value={l.value}>{l.label}</option>
               ))}
             </select>
-            <input type="number" className="date-year" placeholder="An" min={AN_MIN} max={AN_MAX} value={an} onChange={(e) => setAn(e.target.value)} />
+            <input type="number" className={styles.year} placeholder="An" min={AN_MIN} max={AN_MAX} value={an} onChange={(e) => setAn(e.target.value)} aria-label="Anul" />
           </div>
         </label>
 
@@ -147,10 +133,9 @@ export default function PlataForm({ onAscunde, onAdd }) {
             disabled={tip === "onetime"}
             data-testid="form-frecventa"
           >
-            <option value="lunar">Lunar</option>
-            <option value="trimestrial">Trimestrial</option>
-            <option value="anual">Anual</option>
-            <option value="none">- Nu se aplică -</option>
+            {FRECVENTE.map((f) => (
+              <option key={f.value} value={f.value}>{f.label}</option>
+            ))}
           </select>
         </label>
 
@@ -172,7 +157,7 @@ export default function PlataForm({ onAscunde, onAdd }) {
           </p>
         )}
 
-        <button type="submit" disabled={trimite} data-testid="form-submit">
+        <button type="submit" className="btn" disabled={trimite} data-testid="form-submit">
           {trimite ? "Se salvează..." : "Adaugă"}
         </button>
       </form>

@@ -1,0 +1,95 @@
+.sticky {
+  position: sticky;
+  top: 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h2 {
+  margin: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.form input,
+.form select {
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font: inherit;
+  font-size: 1rem;
+  background: var(--input-bg);
+  color: var(--text);
+}
+
+.form input:focus,
+.form select:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.form input::placeholder {
+  color: var(--muted);
+}
+
+.form select:disabled {
+  opacity: 0.6;
+}
+
+.form input[aria-invalid="true"] {
+  border-color: var(--danger);
+}
+
+.datePicker {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.day {
+  width: 60px;
+  text-align: center;
+}
+
+.month {
+  flex: 1;
+  cursor: pointer;
+}
+
+.year {
+  width: 75px;
+  text-align: center;
+}
+
+.datePicker input[type="number"]::-webkit-inner-spin-button,
+.datePicker input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.datePicker input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+@media (max-width: 700px) {
+  .sticky {
+    position: static;
+  }
+}

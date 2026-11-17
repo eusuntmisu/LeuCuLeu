@@ -53,6 +53,51 @@
       "data": "2026-12-29",
       "finalizat": false,
       "id": 6
+    },
+    {
+      "nume": "CLAUDE",
+      "tip": "abonament",
+      "frecventa": "lunar",
+      "suma": 123,
+      "data": "2026-09-29",
+      "finalizat": false,
+      "id": 7
+    },
+    {
+      "nume": "netflix",
+      "tip": "abonament",
+      "frecventa": "lunar",
+      "suma": 120,
+      "data": "2026-11-05",
+      "finalizat": false,
+      "id": 8
+    },
+    {
+      "nume": "sdfg",
+      "tip": "abonament",
+      "frecventa": "lunar",
+      "suma": 34,
+      "data": "2025-09-29",
+      "finalizat": false,
+      "id": 9
+    },
+    {
+      "nume": "netflix",
+      "tip": "abonament",
+      "frecventa": "lunar",
+      "suma": 120,
+      "data": "2026-12-17",
+      "finalizat": false,
+      "id": 10
+    },
+    {
+      "nume": "Claude",
+      "tip": "abonament",
+      "frecventa": "lunar",
+      "suma": 100,
+      "data": "2026-12-17",
+      "finalizat": false,
+      "id": 11
     }
   ]
 }

@@ -1,0 +1,148 @@
+.scena {
+  position: relative;
+  width: 350px;
+  max-width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border: 4px solid #10b981;
+  border-radius: 12px;
+  background: linear-gradient(to bottom, #0f172a, #1e293b 75%, #111827);
+  touch-action: none;
+  user-select: none;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+.lovit {
+  border-color: #ef4444;
+  box-shadow: 0 0 24px rgba(239, 68, 68, 0.5);
+}
+
+.stalp {
+  position: absolute;
+  top: 20px;
+  width: 16px;
+  height: 320px;
+  background: linear-gradient(to right, #7a4b1c, #a86e2c, #7a4b1c);
+  border-radius: 3px;
+}
+
+.stalpStanga {
+  left: 50px;
+}
+
+.stalpDreapta {
+  left: 194px;
+}
+
+.grinda {
+  position: absolute;
+  top: 20px;
+  left: 42px;
+  width: 176px;
+  height: 18px;
+  background: linear-gradient(to bottom, #a86e2c, #7a4b1c);
+  border-radius: 4px;
+}
+
+.franghie {
+  position: absolute;
+  top: 36px;
+  left: 128px;
+  width: 3px;
+  background: #d6b98c;
+}
+
+.lama {
+  position: absolute;
+  z-index: 3;
+  left: 66px;
+  width: 128px;
+  height: 70px;
+}
+
+.greutate {
+  height: 18px;
+  background: linear-gradient(to bottom, #4b5563, #374151);
+  border-radius: 3px 3px 0 0;
+}
+
+.tais {
+  height: 52px;
+  background: linear-gradient(160deg, #f3f4f6, #9ca3af 60%, #6b7280);
+  clip-path: polygon(0 0, 100% 0, 100% 35%, 0 100%);
+}
+
+.tremura {
+  animation: tremura 0.08s linear infinite;
+}
+
+@keyframes tremura {
+  0% { transform: translate(-2px, 0); }
+  50% { transform: translate(2px, 1px); }
+  100% { transform: translate(-2px, 0); }
+}
+
+.bloc {
+  position: absolute;
+  top: 300px;
+  left: 36px;
+  width: 188px;
+  height: 40px;
+  background: linear-gradient(to bottom, #8b5a2b, #5b3a1a);
+  border-radius: 4px;
+  box-shadow: inset 0 3px 0 rgba(255, 255, 255, 0.1);
+}
+
+.banPeBloc {
+  position: absolute;
+  top: 246px;
+  left: 80px;
+  width: 100px;
+  border-radius: 3px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+.progres {
+  position: absolute;
+  top: 232px;
+  left: 80px;
+  width: 100px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progres div {
+  height: 100%;
+  background: #fbbf24;
+}
+
+.mana {
+  position: absolute;
+  top: 252px;
+  width: 260px;
+  height: 60px;
+  pointer-events: none;
+  z-index: 2;
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.5));
+}
+
+.manaContinut {
+  position: relative;
+}
+
+.manaContinut svg {
+  position: relative;
+  display: block;
+}
+
+.banInMana {
+  position: absolute;
+  top: 4px;
+  left: -40px;
+  width: 90px;
+  border-radius: 3px;
+}

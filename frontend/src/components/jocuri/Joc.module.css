@@ -1,0 +1,100 @@
+.ecran {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: min(100%, 420px);
+}
+
+.bara {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.titlu {
+  margin: 0;
+  color: #10b981;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.scor {
+  margin: 0;
+  font-size: 1.05rem;
+  text-align: center;
+}
+
+.ajutor {
+  margin: 0;
+  max-width: 360px;
+  color: #9ca3af;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.btnMeniu {
+  background: transparent;
+  color: #d1d5db;
+  border: 1px solid #6b7280;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.btnMeniu:hover {
+  background: #374151;
+  color: #fff;
+}
+
+.btnPrincipal {
+  background: #10b981;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btnPrincipal:hover {
+  background: #059669;
+}
+
+.btnPrincipal:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.ecranFinal {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 20px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.78);
+  cursor: default;
+}
+
+.ecranFinal h3 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.ecranFinal p {
+  margin: 0 0 8px;
+  color: #d1d5db;
+}
+
+.pierdut {
+  color: #f87171;
+}

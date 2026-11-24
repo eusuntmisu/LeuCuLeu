@@ -21,13 +21,6 @@
   flex: 1;
 }
 
-.main input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  accent-color: var(--accent);
-  cursor: pointer;
-}
-
 .titleRow {
   display: flex;
   align-items: center;
@@ -60,21 +53,54 @@
 }
 
 .status {
+  padding: 3px 10px;
+  border-radius: 999px;
   font-weight: 600;
-  font-size: 0.95rem;
-  color: var(--accent);
+  font-size: 0.85rem;
+  white-space: nowrap;
 }
 
-.done .title {
+.platit {
+  color: var(--accent-dark);
+  background: var(--accent-soft);
+}
+
+.urmeaza {
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.anulat {
+  color: var(--muted);
+  background: var(--card);
+}
+
+.cancelled .title {
   text-decoration: line-through;
   color: var(--muted);
 }
 
-.done .price,
-.done .status {
+.cancelled .price {
   color: var(--muted);
 }
 
-.done :global(.badge) {
+.cancelled :global(.badge) {
   opacity: 0.6;
+}
+
+.cancelBtn {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.cancelBtn:hover {
+  border-color: var(--accent);
+  color: var(--accent-dark);
 }

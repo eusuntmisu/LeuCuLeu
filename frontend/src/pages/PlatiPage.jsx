@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import PlataList from "../components/PlataList.jsx";
 import PlataForm from "../components/PlataForm.jsx";
-import { createPlata, deletePlata, fetchPlati, updatePlata } from "../api.js";
+import { createPlata, deletePlata } from "../api.js";
+import { comutaAnulare, confirmaAnularea, fetchPlatiSincronizate, platiUlterioare } from "../recurente.js";
+import { statusPlata } from "../lunaHelper.js";
 import { LUNI } from "../constants.js";
 import styles from "./PlatiPage.module.css";
 
@@ -18,7 +20,7 @@ export default function PlatiPage() {
     let ignore = false;
     async function load() {
       try {
-        const data = await fetchPlati();
+        const data = await fetchPlatiSincronizate();
         if (!ignore) setPlati(data);
       } catch (err) {
         if (!ignore) setError(err.message);
@@ -33,15 +35,16 @@ export default function PlatiPage() {
   }, []);
 
   async function handleAddPlata(nouaPlata) {
-    const creata = await createPlata(nouaPlata);
-    setPlati((prev) => [...prev, creata]);
+    await createPlata(nouaPlata);
+    // un abonament adaugat cu data din trecut primeste imediat urmatoarele plati
+    setPlati(await fetchPlatiSincronizate());
   }
 
-  async function handleToggle(id) {
+  async function handleCancel(id) {
     const plata = plati.find((p) => p.id === id);
+    if (!plata.anulat && !confirmaAnularea(plata, platiUlterioare(plata, plati).length)) return;
     try {
-      const actualizata = await updatePlata(id, { finalizat: !plata.finalizat });
-      setPlati((prev) => prev.map((p) => (p.id === id ? actualizata : p)));
+      setPlati(await comutaAnulare(plata));
     } catch (err) {
       setError(err.message);
     }
@@ -67,7 +70,7 @@ export default function PlatiPage() {
   });
 
   const filtreActive = filtruTip !== "all" || filtruLuna !== "all" || filtruAn !== "all";
-  const active = platiFiltrate.filter((p) => !p.finalizat).length;
+  const urmeaza = platiFiltrate.filter((p) => statusPlata(p) === "urmeaza").length;
 
   function resetFiltre() {
     setFiltruTip("all");
@@ -132,8 +135,8 @@ export default function PlatiPage() {
 
         <p className={styles.summary}>
           {filtreActive
-            ? `${platiFiltrate.length} din ${plati.length} tranzacții, dintre care ${active} plăți active`
-            : `${plati.length} tranzacții, dintre care ${active} plăți active`}
+            ? `${platiFiltrate.length} din ${plati.length} tranzacții, dintre care ${urmeaza} urmează`
+            : `${plati.length} tranzacții, dintre care ${urmeaza} urmează`}
           {filtreActive && (
             <button type="button" className={styles.reset} onClick={resetFiltre}>
               Șterge filtrele
@@ -155,7 +158,11 @@ export default function PlatiPage() {
         )}
 
         {!loading && !(filtreActive && plati.length > 0 && platiFiltrate.length === 0) && (
-          <PlataList plati={platiFiltrate} onToggle={handleToggle} onDelete={handleDelete} />
+          <PlataList
+            plati={platiFiltrate}
+            onCancel={handleCancel}
+            onDelete={handleDelete}
+          />
         )}
       </section>
     </div>

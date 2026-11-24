@@ -7,7 +7,7 @@
       "frecventa": "lunar",
       "suma": 60,
       "data": "2026-09-12",
-      "finalizat": false
+      "finalizat": true
     },
     {
       "id": 2,
@@ -16,7 +16,8 @@
       "frecventa": "lunar",
       "suma": 180,
       "data": "2026-09-05",
-      "finalizat": true
+      "finalizat": true,
+      "anulat": false
     },
     {
       "id": 3,
@@ -34,7 +35,7 @@
       "frecventa": "none",
       "suma": 1200,
       "data": "2026-10-15",
-      "finalizat": false
+      "finalizat": true
     },
     {
       "id": 5,
@@ -43,7 +44,7 @@
       "frecventa": "lunar",
       "suma": 50,
       "data": "2026-09-10",
-      "finalizat": false
+      "finalizat": true
     },
     {
       "nume": "netflix",
@@ -98,6 +99,159 @@
       "data": "2026-12-17",
       "finalizat": false,
       "id": 11
+    },
+    {
+      "nume": "Spotify Family",
+      "tip": "abonament",
+      "frecventa": "lunar",
+      "suma": 60,
+      "data": "2026-10-12",
+      "anulat": false,
+      "id": 12
+    },
+    {
+      "nume": "Spotify Family",
+      "tip": "abonament",
+      "frecventa": "lunar",
+      "suma": 60,
+      "data": "2026-11-12",
+      "anulat": false,
+      "id": 13
+    },
+    {
+      "nume": "Spotify Family",
+      "tip": "abonament",
+      "frecventa": "lunar",
+      "suma": 60,
+      "data": "2026-12-12",
+      "anulat": false,
+      "id": 14
+    },
+    {
+      "nume": "Abonament Sala",
+      "tip": "abonament",
+      "frecventa": "lunar",
+      "suma": 180,
+      "data": "2026-10-05",
+      "anulat": false,
+      "id": 15
+    },
+    {
+      "nume": "Abonament Sala",
+      "tip": "abonament",
+      "frecventa": "lunar",
+      "suma": 180,
+      "data": "2026-11-05",
+      "anulat": false,
+      "id": 16
+    },
+    {
+      "nume": "Abonament Sala",
+      "tip": "abonament",
+      "frecventa": "lunar",
+      "suma": 180,
+      "data": "2026-12-05",
+      "anulat": false,
+      "id": 17
+    },
+    {
+      "nume": "sdfg",
+      "tip": "abonament",
+      "frecventa": "lunar",
+      "suma": 34,
+      "data": "2025-10-29",
+      "anulat": false,
+      "id": 18
+    },
+    {
+      "nume": "sdfg",
+      "tip": "abonament",
+      "frecventa": "lunar",
+      "suma": 34,
+      "data": "2025-11-29",
+      "anulat": false,
+      "id": 19
+    },
+    {
+      "nume": "sdfg",
+      "tip": "abonament",
+      "frecventa": "lunar",
+      "suma": 34,
+      "data": "2025-12-29",
+      "anulat": false,
+      "id": 20
+    },
+    {
+      "nume": "sdfg",
+      "tip": "abonament",
+      "frecventa": "lunar",
+      "suma": 34,
+      "data": "2026-01-29",
+      "anulat": false,
+      "id": 21
+    },
+    {
+      "nume": "sdfg",
+      "tip": "abonament",
+      "frecventa": "lunar",
+      "suma": 34,
+      "data": "2026-02-28",
+      "anulat": false,
+      "id": 22
+    },
+    {
+      "nume": "sdfg",
+      "tip": "abonament",
+      "frecventa": "lunar",
+      "suma": 34,
+      "data": "2026-03-29",
+      "anulat": true,
+      "id": 23
+    },
+    {
+      "nume": "test1",
+      "tip": "abonament",
+      "frecventa": "lunar",
+      "suma": 122,
+      "data": "2026-01-12",
+      "anulat": false,
+      "id": 24
+    },
+    {
+      "nume": "test1",
+      "tip": "abonament",
+      "frecventa": "lunar",
+      "suma": 122,
+      "data": "2026-02-12",
+      "anulat": false,
+      "id": 25
+    },
+    {
+      "nume": "test1",
+      "tip": "abonament",
+      "frecventa": "lunar",
+      "suma": 122,
+      "data": "2026-03-12",
+      "anulat": false,
+      "id": 26
+    },
+    {
+      "nume": "test1",
+      "tip": "abonament",
+      "frecventa": "lunar",
+      "suma": 122,
+      "data": "2026-04-12",
+      "anulat": false,
+      "id": 27
+    },
+    {
+      "nume": "test1",
+      "tip": "abonament",
+      "frecventa": "lunar",
+      "suma": 122,
+      "data": "2026-05-12",
+      "anulat": true,
+      "id": 28
     }
   ]
 }

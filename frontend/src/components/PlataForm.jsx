@@ -71,7 +71,7 @@ export default function PlataForm({ onAscunde, onAdd }) {
         frecventa: tip === "onetime" ? "none" : frecventa,
         suma: Number(suma),
         data: `${an}-${luna}-${String(zi).padStart(2, "0")}`,
-        finalizat: false,
+        anulat: false,
       });
       setNume("");
       setSuma("");

@@ -41,3 +41,40 @@
   color: var(--muted);
   font-size: 0.9rem;
 }
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.cancelBtn {
+  padding: 8px 14px;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--accent-dark);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.cancelBtn:hover:not(:disabled) {
+  background: var(--accent-dark);
+  color: #fff;
+}
+
+.deleteBtn {
+  margin-left: auto;
+  padding: 8px 14px;
+}
+
+.actions button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}

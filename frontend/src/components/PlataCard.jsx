@@ -1,25 +1,16 @@
 import { Link } from "react-router-dom";
 import { ETICHETE_FRECVENTA } from "../constants.js";
+import { ETICHETE_STATUS, statusPlata } from "../lunaHelper.js";
 import styles from "./PlataCard.module.css";
 
-export default function PlataCard({ plata, onToggle, onDelete }) {
-  const cardClass = plata.finalizat ? `${styles.card} ${styles.done}` : styles.card;
-
-  let textStatus = "Activ";
-  if (plata.finalizat) {
-    textStatus = plata.tip === "abonament" ? "Anulat" : "Plătit";
-  }
+export default function PlataCard({ plata, onCancel, onDelete }) {
+  const esteAbonament = plata.tip === "abonament";
+  const status = statusPlata(plata);
+  const cardClass = status === "anulat" ? `${styles.card} ${styles.cancelled}` : styles.card;
 
   return (
     <li className={cardClass} data-testid="item" data-id={plata.id}>
       <div className={styles.main}>
-        <input
-          type="checkbox"
-          checked={plata.finalizat}
-          onChange={() => onToggle(plata.id)}
-          aria-label={`Marchează ${plata.nume}`}
-          data-testid="item-toggle"
-        />
         <div>
           <div className={styles.titleRow}>
             <Link to={`/plati/${plata.id}`} className={styles.title} data-testid="item-link">
@@ -34,7 +25,22 @@ export default function PlataCard({ plata, onToggle, onDelete }) {
         </div>
       </div>
 
-      <span className={styles.status}>{textStatus}</span>
+      <span className={`${styles.status} ${styles[status]}`} data-testid="item-status">
+        {status === "platit" && "✓ "}
+        {status === "urmeaza" && "⏳ "}
+        {ETICHETE_STATUS[status]}
+      </span>
+
+      {esteAbonament && (
+        <button
+          className={styles.cancelBtn}
+          onClick={() => onCancel(plata.id)}
+          aria-label={`${plata.anulat ? "Reactivează" : "Anulează"} abonamentul ${plata.nume}`}
+          data-testid="item-cancel"
+        >
+          {plata.anulat ? "Reactivează" : "Anulează"}
+        </button>
+      )}
 
       <button
         className="btn-danger"

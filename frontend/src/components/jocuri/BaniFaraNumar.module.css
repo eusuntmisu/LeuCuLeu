@@ -1,0 +1,199 @@
+.zona {
+  position: relative;
+  width: 350px;
+  max-width: 100%;
+  height: 360px;
+  overflow: hidden;
+  border: 4px solid #10b981;
+  border-radius: 12px;
+  background: radial-gradient(circle at 50% 85%, #134e3a, #0f172a 70%);
+  touch-action: none;
+  user-select: none;
+  cursor: grab;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+.zona:active {
+  cursor: grabbing;
+}
+
+.indiciu {
+  position: absolute;
+  top: 16px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  pointer-events: none;
+}
+
+.infoTeanc {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 14px;
+  text-align: center;
+  color: #d1d5db;
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+
+.infoTeanc strong {
+  color: #34d399;
+}
+
+.plus {
+  position: absolute;
+  top: -26px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #34d399;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+@keyframes zbor {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--dx), -300px) rotate(var(--rot)) scale(0.7);
+    opacity: 0;
+  }
+}
+
+.colectie {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.magazin {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 350px;
+}
+
+.magazin button {
+  font-size: 0.95rem;
+}
+
+.victorie {
+  margin: 0;
+  text-align: center;
+  color: #fbbf24;
+  font-weight: 600;
+}
+
+.reset {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #9ca3af;
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.reset:hover {
+  color: #fff;
+}
+
+.vertical {
+  position: relative;
+  display: block;
+  width: calc(var(--lung) * 0.54);
+  height: var(--lung);
+}
+
+.vertical img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--lung);
+  transform: translate(-50%, -50%) rotate(-90deg);
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.teanc {
+  --lung: 180px;
+  position: absolute;
+  left: 50%;
+  bottom: 48px;
+  width: calc(var(--lung) * 0.54);
+  height: var(--lung);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.teanc > .vertical {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.zbor {
+  --lung: 160px;
+  position: absolute;
+  left: 50%;
+  bottom: 70px;
+  margin-left: calc(var(--lung) * -0.27);
+  pointer-events: none;
+  animation: zbor 0.9s ease-out forwards;
+}
+
+.miniBancnota {
+  --lung: 58px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 4px;
+  background: none;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  color: #d1d5db;
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.miniBancnota .vertical img {
+  box-shadow: none;
+  border-radius: 2px;
+}
+
+.eticheta {
+  line-height: 1;
+}
+
+.detinuta {
+  border-color: #10b98166;
+}
+
+.detinuta:hover {
+  border-color: #10b981;
+  transform: translateY(-2px);
+}
+
+.aleasa {
+  border-color: #fbbf24;
+  color: #fbbf24;
+  transform: translateY(-2px);
+}
+
+.blocata {
+  cursor: not-allowed;
+  filter: grayscale(1) brightness(0.45);
+}

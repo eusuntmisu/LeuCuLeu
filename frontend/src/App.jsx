@@ -1,129 +1,21 @@
-import { useState, useEffect } from "react";
-import PlataList from "./components/PlataList.jsx";
-import PlataForm from "./components/PlataForm.jsx";
-import SpiridusGame from "./components/SpiridusGame.jsx";
-import { createPlata, deletePlata, fetchPlati, updatePlata } from "./api.js";
-
-function temaInitiala() {
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-}
+import { Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout.jsx";
+import PlatiPage from "./pages/PlatiPage.jsx";
+import PlataDetaliuPage from "./pages/PlataDetaliuPage.jsx";
+import CheltuieliLunarePage from "./pages/CheltuieliLunarePage.jsx";
+import DesprePage from "./pages/DesprePage.jsx";
+import NotFoundPage from "./pages/NotFoundPage.jsx";
 
 export default function App() {
-  const [plati, setPlati] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  
-  const [arataFormular, setArataFormular] = useState(true);
-  const [tema, setTema] = useState(temaInitiala);
-  const [clickuriLogo, setClickuriLogo] = useState(0);
-
-
-  useEffect(() => {
-    let ignore = false;
-    async function load() {
-      try {
-        const data = await fetchPlati();
-        if (!ignore) setPlati(data);
-      } catch (err) {
-        if (!ignore) setError(err.message);
-      } finally {
-        if (!ignore) setLoading(false);
-      }
-    }
-    load();
-    
-    return () => {
-      ignore = true;
-    };
-  }, []);
-
-  // Întâi serverul, apoi state-ul: pe ecran ajunge doar ce s-a salvat.
-  // Fără try: eroarea ajunge înapoi în formular, care o afișează.
-  async function handleAddPlata(nouaPlata) {
-    const creata = await createPlata(nouaPlata); // serverul întoarce elementul cu id
-    setPlati((prev) => [...prev, creata]);
-  }
-
-  async function handleToggle(id) {
-    const plata = plati.find((p) => p.id === id);
-    try {
-      const actualizata = await updatePlata(id, { finalizat: !plata.finalizat });
-      setPlati((prev) => prev.map((p) => (p.id === id ? actualizata : p)));
-    } catch (err) {
-      setError(err.message);
-    }
-  }
-
-  async function handleDelete(id) {
-    try {
-      await deletePlata(id);
-      setPlati((prev) => prev.filter((p) => p.id !== id));
-    } catch (err) {
-      setError(err.message);
-    }
-  }
-
-  function handleTema() {
-    const noua = tema === "dark" ? "light" : "dark";
-    setTema(noua);
-    document.documentElement.dataset.theme = noua;
-  }
-
-  const active = plati.filter((p) => !p.finalizat).length;
-
   return (
-    <>
-      <header className="app-header" style={{ position: "relative" }}>
-        <button className="theme-toggle" onClick={handleTema} aria-pressed={tema === "dark"}>
-          {tema === "dark" ? "☀️ Mod luminos" : "🌙 Mod întunecat"}
-        </button>
-
-        <img 
-          src="/leuculeu.png" 
-          alt="LeuCuLeu Logo" 
-          className="app-logo" 
-          style={{ cursor: "pointer" }}
-          onClick={() => setClickuriLogo((prev) => prev + 1)}
-        />
-        <p className="app-count">
-          {plati.length} tranzacții, dintre care {active} plăți active
-        </p>
-      </header>
-
-      {clickuriLogo >= 5 && <SpiridusGame onClose={() => setClickuriLogo(0)} />}
-
-      <main className={`container ${!arataFormular ? "full-width" : ""}`}>
-        {arataFormular && <PlataForm onAscunde={() => setArataFormular(false)} onAdd={handleAddPlata} />}
-
-        <section className="panel">
-          {!arataFormular && (
-            <button className="icon-btn show-form-btn" onClick={() => setArataFormular(true)} title="Arată panoul de adăugare">➔</button>
-          )}
-
-          <div className="list-header">
-            <h2>Istoric tranzacții</h2>
-            <div className="filter-group">
-              <select name="vizualizare_tip" defaultValue="all"><option value="all">Toate</option></select>
-              <select name="filtru_luna" defaultValue="09"><option value="09">Septembrie</option></select>
-              <select name="filtru_an" defaultValue="2026"><option value="2026">2026</option></select>
-            </div>
-          </div>
-          
-
-          {loading && <p className="info" data-testid="loading">Se încarcă istoricul de plăți...</p>}
-
-          {error && (
-            <div className="error" data-testid="error">
-              A apărut o eroare: {error}.<br/>
-              Serverul local rulează? Ai dat <code>npm run api</code> în al doilea terminal?
-            </div>
-          )}
-
-          {!loading && (
-            <PlataList plati={plati} onToggle={handleToggle} onDelete={handleDelete} />
-          )}
-        </section>
-      </main>
-    </>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<PlatiPage />} />
+        <Route path="/plati/:id" element={<PlataDetaliuPage />} />
+        <Route path="/pe-luna" element={<CheltuieliLunarePage />} />
+        <Route path="/despre" element={<DesprePage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+    </Routes>
   );
 }

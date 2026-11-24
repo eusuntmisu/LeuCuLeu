@@ -1,0 +1,115 @@
+.header {
+  position: relative;
+  background: var(--accent);
+  color: #fff;
+  padding: 20px 16px 14px;
+  text-align: center;
+  border-bottom: 4px solid var(--accent-dark);
+}
+
+.logo {
+  max-height: 230px;
+  width: auto;
+  max-width: 100%;
+  margin: 0 auto 8px;
+  display: block;
+  cursor: pointer;
+}
+
+.themeToggle {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.themeToggle:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: rotate(-15deg);
+}
+
+.themeToggle:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.themeToggle svg {
+  width: 20px;
+  height: 20px;
+  animation: intraIcon 0.3s ease;
+}
+
+@keyframes intraIcon {
+  from {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .themeToggle,
+  .themeToggle svg {
+    animation: none;
+    transition: none;
+  }
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 8px;
+  opacity: 0.85;
+}
+
+.link:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.active {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.main {
+  max-width: 1000px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+.footer {
+  text-align: center;
+  padding: 24px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 700px) {
+  .themeToggle {
+    position: static;
+    margin: 0 auto 12px;
+  }
+}

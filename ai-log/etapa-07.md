@@ -23,4 +23,7 @@
 - **Changed or rejected**: New items are appended at the end of the list, as in the guide.
 
 ## What I learned / what did not work
-<!-- complete with your own words -->
+- A form is only reliable when it is controlled: with `value` + `onChange` on every field, the state is the single source of truth, so validating and clearing the form is just reading and resetting state.
+- Updating the list only with what the server returned (instead of changing the state first) means the page never shows something that was not saved.
+- Checking that the day exists in the month (no 30 February) needed its own rule; the basic required/positive checks were not enough.
+- Did not work at first: my status field (`activ`) meant the opposite of the checker's `done` flag, so I had to rename it to `finalizat` before `tw.json` made sense.
